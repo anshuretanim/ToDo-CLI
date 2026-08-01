@@ -1,5 +1,5 @@
 import readline from "readline";
-import writeHere from "./todofile.js";
+import { writeHere, clearFile } from "./todofile.js";
 
 const rl = readline.createInterface({ //node creates a new object.
     //the new object is stored in rl.
@@ -15,6 +15,7 @@ const showMenu = () => {
     console.log("1: Add a task");
     console.log("2: View Task");
     console.log("3: Exit");
+    console.log("4: Clear Task File");
     rl.question("Choose an option: ", handleInput);
 }
 
@@ -29,7 +30,7 @@ const handleInput = (option) => {
         })}
     else if(option==="2"){
         if(todos.length===0){
-            console.log("No tasks.\n");
+            console.log("\nNo tasks.\n");
         }else{
         console.log("\n Your ToDo List is:\n");
         todos.forEach((task, index) => {
@@ -39,7 +40,11 @@ const handleInput = (option) => {
     } else if(option==="3"){
         console.log("Thank you for using the code.");
         rl.close();
-    }else{
+    } else if(option==="4"){
+        clearFile();
+        todos.length = 0;
+        showMenu();
+    } else{
         console.log("Invalid option. Please try again with a valid input number.");
         showMenu();
     }        

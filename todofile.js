@@ -16,6 +16,14 @@ fs.appendFile(filePath, ToDoData+"\n", "utf-8", (err)=>{
 });
 };
 
+const clearFile = () => {
+    try {
+        fs.truncateSync(filePath, 0);
+        console.log("File cleared.\n");
+    } catch (err) {
+        console.error("Failed to clear file.", err);
+    }
+};
 
-export default writeHere;
 
+export {writeHere, clearFile};
